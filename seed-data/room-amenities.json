@@ -1,0 +1,17 @@
+[
+  {"_id":"a00000000000000000000001","name":"High-Speed Wi-Fi","icon":"Wifi","description":"Fast wireless internet throughout the room."},
+  {"_id":"a00000000000000000000002","name":"Air Conditioning","icon":"Wind","description":"Individually controlled climate system."},
+  {"_id":"a00000000000000000000003","name":"Smart TV","icon":"Tv","description":"Flat-screen television with streaming apps."},
+  {"_id":"a00000000000000000000004","name":"Mini Bar","icon":"Refrigerator","description":"Stocked minibar with drinks and snacks."},
+  {"_id":"a00000000000000000000005","name":"Coffee Station","icon":"Coffee","description":"Egyptian coffee, tea, and espresso facilities."},
+  {"_id":"a00000000000000000000006","name":"Private Bathroom","icon":"Bath","description":"En-suite bathroom with rain shower."},
+  {"_id":"a00000000000000000000007","name":"Nile View Balcony","icon":"Sunrise","description":"Private furnished balcony overlooking the Nile."},
+  {"_id":"a00000000000000000000008","name":"King Bed","icon":"BedDouble","description":"Premium king-size bed with Egyptian cotton linens."},
+  {"_id":"a00000000000000000000009","name":"Twin Beds","icon":"BedSingle","description":"Two comfortable twin beds."},
+  {"_id":"a00000000000000000000010","name":"Safe Deposit Box","icon":"LockKeyhole","description":"In-room electronic safe."},
+  {"_id":"a00000000000000000000011","name":"Work Desk","icon":"Desk","description":"Ergonomic desk with power and lighting."},
+  {"_id":"a00000000000000000000012","name":"Bathrobe and Slippers","icon":"Shirt","description":"Soft robe and slippers for every guest."},
+  {"_id":"a00000000000000000000013","name":"Rain Shower","icon":"CloudRain","description":"Walk-in rainfall shower."},
+  {"_id":"a00000000000000000000014","name":"Connecting Door","icon":"DoorOpen","description":"Connecting rooms available on request."},
+  {"_id":"a00000000000000000000015","name":"Baby Cot","icon":"Baby","description":"Cot available for families on request."}
+]

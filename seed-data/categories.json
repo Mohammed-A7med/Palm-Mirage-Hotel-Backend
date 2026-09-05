@@ -1,0 +1,6 @@
+[
+  {"_id":"c00000000000000000000001","label":"Appetizer","icon":"Utensils","heroImg":"https://placehold.co/1200x700?text=Appetizers"},
+  {"_id":"c00000000000000000000002","label":"Restaurant","icon":"ChefHat","heroImg":"https://placehold.co/1200x700?text=Restaurant"},
+  {"_id":"c00000000000000000000003","label":"Desserts","icon":"CakeSlice","heroImg":"https://placehold.co/1200x700?text=Desserts"},
+  {"_id":"c00000000000000000000004","label":"Drinks","icon":"GlassWater","heroImg":"https://placehold.co/1200x700?text=Drinks"}
+]
