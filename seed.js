@@ -53,6 +53,33 @@ const files = {
 const load = (fileName) => JSON.parse(fs.readFileSync(path.join(seedDir, fileName), "utf8"));
 const data = Object.fromEntries(Object.entries(files).map(([key, fileName]) => [key, load(fileName)]));
 
+const roomImagePool = [
+  "https://sailing.thimpress.com/demo-mountain-hotel/wp-content/uploads/sites/27/2024/04/living-room-with-fireplace-wood-burning-stove.png",
+  "https://sailing.thimpress.com/demo-mountain-hotel/wp-content/uploads/sites/27/2024/04/modern-cozy-bedroom-interior-with-three-panoramic-window-1.png",
+  "https://sailing.thimpress.com/demo-mountain-hotel/wp-content/uploads/sites/27/2024/04/mountain-lifestyle-12-1.png",
+  "https://sailing.thimpress.com/demo-mountain-hotel/wp-content/uploads/sites/27/2024/04/mountain-view-bedroom-with-large-windows-private-balcony-1.png",
+  "https://sailing.thimpress.com/demo-mountain-hotel/wp-content/uploads/sites/27/2024/04/pexels-sylvia-p-269813275-16068765-1.png",
+  "https://sailing.thimpress.com/demo-mountain-hotel/wp-content/uploads/sites/27/2024/04/photorealistic-timber-house-interior-with-wooden-decor-furnishings.png",
+  "https://sailing.thimpress.com/demo-mountain-hotel/wp-content/uploads/sites/27/2024/04/photorealistic-wooden-house-interior-with-timber-decor-furnishings-1.png",
+  "https://sailing.thimpress.com/demo-mountain-hotel/wp-content/uploads/sites/27/2024/04/photorealistic-wooden-house-interior-with-timber-decor-furnishings.png",
+  "https://sailing.thimpress.com/demo-mountain-hotel/wp-content/uploads/sites/27/2024/04/dining-room-cozy-wooden-house-rural-style-room-with-table-chairs-cupboard-decoration.png",
+  "https://sailing.thimpress.com/demo-mountain-hotel/wp-content/uploads/sites/27/2024/04/diverse-young-people-being-digital-nomads-working-remotely-from-dreamy-locations-1.png",
+  "https://sailing.thimpress.com/demo-mountain-hotel/wp-content/uploads/sites/27/2024/04/house-cliff-with-view-mountains-river-1.png",
+  "https://sailing.thimpress.com/demo-mountain-hotel/wp-content/uploads/sites/27/2024/04/bedroom-with-stunning-view-lake-mountains-offering-tranquil-luxurious-getaway.png",
+  "https://sailing.thimpress.com/demo-mountain-hotel/wp-content/uploads/sites/27/2024/04/cozy-cabin-with-view-mountains-1.png",
+  "https://sailing.thimpress.com/demo-mountain-hotel/wp-content/uploads/sites/27/2024/04/bedroom-with-large-window-overlooking-snowy-forest-1-1.png",
+];
+
+const randomRoomImages = () => [...roomImagePool]
+  .sort(() => Math.random() - 0.5)
+  .slice(0, 3)
+  .map((secure_url, index) => ({ secure_url, public_id: `seed-room-image-${index + 1}` }));
+
+const roomsWithUpdatedImages = data.rooms.map((room) => ({
+  ...room,
+  roomImages: randomRoomImages(),
+}));
+
 const expectedCounts = {
   categories: 4,
   facilities: 15,
@@ -242,7 +269,7 @@ async function seed() {
     await insertAndLog("hotels", hotelModel, data.hotels);
     await insertAndLog("restaurant pages", restaurantPageModel, data.restaurantPages);
     await insertAndLog("users", userModel, hashUsers());
-    await insertAndLog("rooms", RoomModel, data.rooms);
+    await insertAndLog("rooms", RoomModel, roomsWithUpdatedImages);
     await insertAndLog("menu items", menuModel, data.menus);
     await insertAndLog("activities", activityModel, data.activities);
     await insertAndLog("activity schedules", activityScheduleModel, data.schedules);

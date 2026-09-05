@@ -53,37 +53,27 @@ const addDays = (days, hour = 12, minute = 0) => {
 const addHours = (date, hours) => new Date(date.getTime() + hours * hourMs);
 const time = (hour, minute = 0) => `${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}`;
 
-/** Large pool — bedrooms, baths, suites, views (Unsplash) for varied room galleries */
+/** Room gallery pool; each seeded room receives three distinct random images. */
 const roomImagePool = [
-  "photo-1631049307264-d0bfeabcfad6",
-  "photo-1618773928121-c32242e63f39",
-  "photo-1590490360182-c33d57733427",
-  "photo-1582719478250-c89cae4dc85b",
-  "photo-1611892440504-42a792e24d32",
-  "photo-1501117716987-e44a19849d9b",
-  "photo-1522771739844-6a9f6d5f14af",
-  "photo-1559599101-f09722fb4948",
-  "photo-1600607687939-ce8a6c25118c",
-  "photo-1566668622588-7567698c4e77",
-  "photo-1566073771259-6a850d9931da",
-  "photo-1445019980597-93fa9ea235a5",
-  "photo-1564501049412-61c2a3083791",
-  "photo-1584132967334-10e028bd69f7",
-  "photo-1591088398339-371a9c57a8d2",
-  "photo-1505691938895-1758d7feb511",
-  "photo-1512918728675-ed5a9ecdebfd",
-  "photo-1502672260266-1c1ef2d93688",
-  "photo-1496417263034-38ec4f0b665a",
-  "photo-1522708323590-d24dbb6b0267",
-  "photo-1505693416388-ac5ce068fe85",
-  "photo-1505692952047-1a78307da8f2",
-  "photo-1512917856033-6d1daf126f28",
-  "photo-1595526114035-0d45ed16cf26",
-  "photo-1582719508461-905be673a2e2",
-  "photo-1578683010236-d716f9a3f461",
-  "photo-1542314831-068cd1dbfeeb",
-  "photo-1598928506311-c55ded91a20c",
-].map((id) => u(id));
+  "https://sailing.thimpress.com/demo-mountain-hotel/wp-content/uploads/sites/27/2024/04/living-room-with-fireplace-wood-burning-stove.png",
+  "https://sailing.thimpress.com/demo-mountain-hotel/wp-content/uploads/sites/27/2024/04/modern-cozy-bedroom-interior-with-three-panoramic-window-1.png",
+  "https://sailing.thimpress.com/demo-mountain-hotel/wp-content/uploads/sites/27/2024/04/mountain-lifestyle-12-1.png",
+  "https://sailing.thimpress.com/demo-mountain-hotel/wp-content/uploads/sites/27/2024/04/mountain-view-bedroom-with-large-windows-private-balcony-1.png",
+  "https://sailing.thimpress.com/demo-mountain-hotel/wp-content/uploads/sites/27/2024/04/pexels-sylvia-p-269813275-16068765-1.png",
+  "https://sailing.thimpress.com/demo-mountain-hotel/wp-content/uploads/sites/27/2024/04/photorealistic-timber-house-interior-with-wooden-decor-furnishings.png",
+  "https://sailing.thimpress.com/demo-mountain-hotel/wp-content/uploads/sites/27/2024/04/photorealistic-wooden-house-interior-with-timber-decor-furnishings-1.png",
+  "https://sailing.thimpress.com/demo-mountain-hotel/wp-content/uploads/sites/27/2024/04/photorealistic-wooden-house-interior-with-timber-decor-furnishings.png",
+  "https://sailing.thimpress.com/demo-mountain-hotel/wp-content/uploads/sites/27/2024/04/dining-room-cozy-wooden-house-rural-style-room-with-table-chairs-cupboard-decoration.png",
+  "https://sailing.thimpress.com/demo-mountain-hotel/wp-content/uploads/sites/27/2024/04/diverse-young-people-being-digital-nomads-working-remotely-from-dreamy-locations-1.png",
+  "https://sailing.thimpress.com/demo-mountain-hotel/wp-content/uploads/sites/27/2024/04/house-cliff-with-view-mountains-river-1.png",
+  "https://sailing.thimpress.com/demo-mountain-hotel/wp-content/uploads/sites/27/2024/04/bedroom-with-stunning-view-lake-mountains-offering-tranquil-luxurious-getaway.png",
+  "https://sailing.thimpress.com/demo-mountain-hotel/wp-content/uploads/sites/27/2024/04/cozy-cabin-with-view-mountains-1.png",
+  "https://sailing.thimpress.com/demo-mountain-hotel/wp-content/uploads/sites/27/2024/04/bedroom-with-large-window-overlooking-snowy-forest-1-1.png",
+];
+
+const randomRoomImages = () => [...roomImagePool]
+  .sort(() => Math.random() - 0.5)
+  .slice(0, 3);
 
 const ROOM_TYPE_ORDER = ["single", "double", "twin", "deluxe", "family"];
 const ROOM_WINGS = ["Nile", "East", "West", "Garden", "Royal", "Palm", "Sky", "Courtyard"];
@@ -224,9 +214,7 @@ async function seedRooms(facilities, roomAmenities) {
     const checkInTime = i % 8 === 0 ? "15:00" : "14:00";
     const checkOutTime = i % 11 === 0 ? "11:00" : "12:00";
 
-    const imgA = roomImagePool[i % roomImagePool.length];
-    const imgB = roomImagePool[(i + 9) % roomImagePool.length];
-    const imgC = roomImagePool[(i + 19) % roomImagePool.length];
+    const [imgA, imgB, imgC] = randomRoomImages();
 
     const fi = i % Math.max(1, facilityIds.length - 4);
     const ai = i % Math.max(1, amenityIds.length - 3);
