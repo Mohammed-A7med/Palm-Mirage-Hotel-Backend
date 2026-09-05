@@ -11,6 +11,7 @@ const DEV_ORIGINS = [
 // Only deployed frontend URLs. No localhost, no ports.
 const PROD_ORIGINS = [
   "https://palm-mirage-hotel.netlify.app",   // Website (Netlify)
+  "https://final-project-nti-three.vercel.app", // Website (Vercel)
   "https://palm-mirage-hotel-dashboard-git-sprint-9-1omartarek1s-projects.vercel.app",  // Dashboard (Vercel)
 ];
 
@@ -33,7 +34,7 @@ export const getAllowedOrigins = () => {
 export const allowOrigin = (origin, callback) => {
   const allowedOrigins = getAllowedOrigins();
 
-  if (!origin || allowedOrigins.includes(origin)) {
+  if (!origin || allowedOrigins.includes("*") || allowedOrigins.includes(origin)) {
     return callback(null, origin || true);
   }
 
